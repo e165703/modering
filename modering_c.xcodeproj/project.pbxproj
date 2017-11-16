@@ -403,7 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = modering_c/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ie-ryuukyuu.modering-c";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie-ryuukyuu.modering-chttps---github.com-e165703---C.git-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -414,7 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = modering_c/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ie-ryuukyuu.modering-c";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie-ryuukyuu.modering-chttps---github.com-e165703---C.git-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -484,6 +484,7 @@
 				B4695C2F1FBD2DC900A18FF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4695C301FBD2DC900A18FF0 /* Build configuration list for PBXNativeTarget "modering_cTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +493,7 @@
 				B4695C321FBD2DC900A18FF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4695C331FBD2DC900A18FF0 /* Build configuration list for PBXNativeTarget "modering_cUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +502,7 @@
 				B4695C351FBD2DC900A18FF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
