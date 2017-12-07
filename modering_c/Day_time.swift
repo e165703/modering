@@ -13,11 +13,11 @@ class Day_time{
         let date = NSDate()
         let calender = NSCalendar.currentCalendar()
         let interval: NSTimeInterval
-        interval = 60*60*24
+        interval = 0
         let nextDate = date.dateByAddingTimeInterval(interval)
         let fireDateComponents = calender.components([.Year , .Month ,.Day , .Weekday], fromDate: nextDate)
-        fireDateComponents.hour = 0
-        fireDateComponents.minute = 01
+        fireDateComponents.hour = 16
+        fireDateComponents.minute = 59
         fireDateComponents.second = 0
         return calender.dateFromComponents(fireDateComponents)!
     }
