@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let suimin = Filewrite()
+        
         if application.applicationState != .Active{
+            suimin.slept_time()
             application.applicationIconBadgeNumber = 0
             application.cancelLocalNotification(notification)
         }else{
@@ -30,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notiSettings = UIUserNotificationSettings(forTypes:[.Alert,.Sound,.Badge], categories:nil)
         application.registerUserNotificationSettings(notiSettings)
         application.registerForRemoteNotifications()
+        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification,let userInfo = notification.userInfo{
+            application.applicationIconBadgeNumber = 0
+            application.cancelLocalNotification(notification)
+        }
         return true
     }
 
@@ -50,16 +57,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notification = UILocalNotification()
         notification.alertAction = "アプリを開く"
         notification.alertBody = "おはよう御座います！"
-        notification.fireDate = Day_time.Tommorow_notification()
+        notification.fireDate = Moning_time.Tommorow_notification()
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.applicationIconBadgeNumber = 1
         notification.userInfo = ["notifyID":"modering"]
         application.scheduleLocalNotification(notification)
         
+        let notification1 = UILocalNotification()
+        notification1.alertAction = "アプリを開く"
+        notification1.alertBody = "寝るときはアプリを開いてね！"
+        notification1.fireDate = Sleep_time.Today_notification()
+        notification1.soundName = UILocalNotificationDefaultSoundName
+        notification1.applicationIconBadgeNumber = 1
+        notification1.userInfo = ["notifyID":"modering"]
+        application.scheduleLocalNotification(notification1)
+        if notification1.applicationIconBadgeNumber == 1{
+            print("a")
+            suimin.sleep_time()//ここにtextファイルから時間を読み込み睡眠時間を計算し、結果を出すコードをかく
+        }
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if application.applicationIconBadgeNumber != 0{
+            application.applicationIconBadgeNumber = 0
+            print("application\(application.applicationIconBadgeNumber)")
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

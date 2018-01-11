@@ -17,6 +17,7 @@
 		B4695C131FBD2DC900A18FF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4695C111FBD2DC900A18FF0 /* LaunchScreen.storyboard */; };
 		B4695C1E1FBD2DC900A18FF0 /* modering_cTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4695C1D1FBD2DC900A18FF0 /* modering_cTests.swift */; };
 		B4695C291FBD2DC900A18FF0 /* modering_cUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4695C281FBD2DC900A18FF0 /* modering_cUITests.swift */; };
+		B4A9BC241FE0F76900EE73A7 /* Sleep_time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BC231FE0F76900EE73A7 /* Sleep_time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B4695C241FBD2DC900A18FF0 /* modering_cUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = modering_cUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4695C281FBD2DC900A18FF0 /* modering_cUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modering_cUITests.swift; sourceTree = "<group>"; };
 		B4695C2A1FBD2DC900A18FF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4A9BC231FE0F76900EE73A7 /* Sleep_time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep_time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				B45BE0851FD7967A0022DCA6 /* Day_time.swift */,
 				B45BE0871FD797020022DCA6 /* Week.swift */,
 				B45BE08D1FD936AB0022DCA6 /* FileWrite.swift */,
+				B4A9BC231FE0F76900EE73A7 /* Sleep_time.swift */,
 			);
 			path = modering_c;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				B45BE0861FD7967A0022DCA6 /* Day_time.swift in Sources */,
 				B45BE0881FD797020022DCA6 /* Week.swift in Sources */,
+				B4A9BC241FE0F76900EE73A7 /* Sleep_time.swift in Sources */,
 				B4695C0B1FBD2DC900A18FF0 /* ViewController.swift in Sources */,
 				B4695C091FBD2DC900A18FF0 /* AppDelegate.swift in Sources */,
 				B45BE08E1FD936AB0022DCA6 /* FileWrite.swift in Sources */,
