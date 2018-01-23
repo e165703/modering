@@ -6,17 +6,17 @@
 //  Copyright © 2017年 大城　拓千. All rights reserved.
 //
 import UIKit
-
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    
+    var counter = 0
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         let suimin = Filewrite()
         
-        if application.applicationState != .Active{
+        if application.applicationState != .active{
             suimin.slept_time()
             application.applicationIconBadgeNumber = 0
             application.cancelLocalNotification(notification)
@@ -28,15 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
             }
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let notiSettings = UIUserNotificationSettings(forTypes:[.Alert,.Sound,.Badge], categories:nil)
-        application.registerUserNotificationSettings(notiSettings)
-        application.registerForRemoteNotifications()
-        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification,let userInfo = notification.userInfo{
-            application.applicationIconBadgeNumber = 0
-            application.cancelLocalNotification(notification)
-        }
+        application.registerUserNotificationSettings(
+            UIUserNotificationSettings(types:
+                UIUserNotificationType(rawValue: UIUserNotificationType.RawValue(UInt8(UIUserNotificationType.sound.rawValue)
+                    | UInt8(UIUserNotificationType.badge.rawValue)
+                    | UInt8(UIUserNotificationType.alert.rawValue))), categories: nil)
+        )
+        //if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification,let userInfo = notification.userInfo{
+            //application.applicationIconBadgeNumber = 0
+            //application.cancelLocalNotification(notification)
+        //}
         return true
     }
 
@@ -45,35 +48,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
+        print("aaa")
         let suimin = Filewrite()
+        application.cancelAllLocalNotifications()
+        
         suimin.a()
         
-        
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         application.cancelAllLocalNotifications()
-        let notification = UILocalNotification()
-        notification.alertAction = "アプリを開く"
-        notification.alertBody = "おはよう御座います！"
-        notification.fireDate = Moning_time.Tommorow_notification()
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.applicationIconBadgeNumber = 1
-        notification.userInfo = ["notifyID":"modering"]
-        application.scheduleLocalNotification(notification)
         
-        let notification1 = UILocalNotification()
-        notification1.alertAction = "アプリを開く"
-        notification1.alertBody = "寝るときはアプリを開いてね！"
-        notification1.fireDate = Sleep_time.Today_notification()
-        notification1.soundName = UILocalNotificationDefaultSoundName
-        notification1.applicationIconBadgeNumber = 1
-        notification1.userInfo = ["notifyID":"modering"]
-        application.scheduleLocalNotification(notification1)
-        if notification1.applicationIconBadgeNumber == 1{
-            print("a")
-            suimin.sleep_time()//ここにtextファイルから時間を読み込み睡眠時間を計算し、結果を出すコードをかく
+        let notification = UILocalNotification()
+        notification.alertAction = "アプリに戻る"
+        notification.alertBody = "ランキングが更新されました"
+        notification.fireDate = NSDate(timeIntervalSinceNow: 60) as Date  // Test
+        notification.soundName = UILocalNotificationDefaultSoundName
+        // アイコンバッジに1を表示
+        notification.applicationIconBadgeNumber = 1
+        // あとのためにIdを割り振っておく
+        notification.userInfo = ["notifyId": "ranking_update"]
+        application.scheduleLocalNotification(notification)
+        var i = 0
+        var count = 1
+        counter = 0
+        while i == 0 {
+            if count%100000000 == 0{
+                count = 0
+                suimin.zyouken()
+            }
+            count += 1
         }
         
     }
@@ -86,8 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        counter += 1
     }
 
     func applicationWillTerminate(application: UIApplication) {

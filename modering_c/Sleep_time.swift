@@ -10,14 +10,15 @@ import Foundation
 class Sleep_time{
     class func Today_notification() -> NSDate {
         let date = NSDate()
-        let calender = NSCalendar.currentCalendar()
-        let interval: NSTimeInterval
+        let calender = NSCalendar.current
+        let interval: TimeInterval
         interval = 0
-        let nextDate = date.dateByAddingTimeInterval(interval)
-        let fireDateComponents = calender.components([.Year , .Month ,.Day , .Weekday], fromDate: nextDate)
-        fireDateComponents.hour = 0
-        fireDateComponents.minute = 59
-        fireDateComponents.second = 0
-        return calender.dateFromComponents(fireDateComponents)!
+        let nextDate = date.addingTimeInterval(interval)
+        //let fireDateComponents = calender.components([.Year,.Month,.Day,.Weekday], fromDate: nextDate)
+        //fireDateComponents.hour = 12
+        //fireDateComponents.minute = 0
+        //fireDateComponents.second = 0
+        //return calender.dateFromComponents(fireDateComponents)!
+        return date
     }
 }

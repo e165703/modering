@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ViewController.timerUpdate), userInfo: nil, repeats: true)
     }
-
+    @objc func timerUpdate() {
+        print("update")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
