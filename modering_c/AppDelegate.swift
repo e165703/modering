@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var counter = 0
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         let suimin = Filewrite()
         
         if application.applicationState != .active{
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
             }
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         application.registerUserNotificationSettings(
             UIUserNotificationSettings(types:
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notification = UILocalNotification()
         notification.alertAction = "アプリに戻る"
         notification.alertBody = "ランキングが更新されました"
-        notification.fireDate = NSDate(timeIntervalSinceNow: 60) as Date  // Test
+        notification.fireDate = NSDate(timeIntervalSinceNow:10) as Date
         notification.soundName = UILocalNotificationDefaultSoundName
         // アイコンバッジに1を表示
         notification.applicationIconBadgeNumber = 1
@@ -77,15 +77,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         counter = 0
         while i == 0 {
             if count%100000000 == 0{
-                count = 0
-                suimin.zyouken()
+                let date = NSDate()
+                let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+                let calendarComponents = calendar.components(.hour, from: date as Date)
+                let calendarComponents2 = calendar.components(.minute, from: date as Date)
+                let calendarComponents3 = calendar.components(.second, from: date as Date)
+                let hour = calendarComponents.hour
+                let minute = calendarComponents2.minute
+                let second = calendarComponents3.second
+                var String_a = String(format: "%2d %2d %02d \n",hour!,minute!,second!)
+                print(String_a)
+                if hour == 23 && minute == 53 && second! <= 2{
+                    suimin.sleep_time()
+                    break
+                }
             }
             count += 1
         }
         
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         if application.applicationIconBadgeNumber != 0{
             application.applicationIconBadgeNumber = 0

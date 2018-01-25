@@ -10,27 +10,6 @@
 import Foundation
 import UIKit
 class Filewrite{
-    
-    func a(){
-        Timer.scheduledTimer(timeInterval: 60, target: self, selector:#selector(Filewrite.zyouken), userInfo: nil, repeats: true)
-        }
-    @objc func zyouken(){
-        let date = NSDate()
-        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let calendarComponents = calendar.components(.hour, from: date as Date)
-        let calendarComponents2 = calendar.components(.minute, from: date as Date)
-        let calendarComponents3 = calendar.components(.second, from: date as Date)
-        let hour = calendarComponents.hour
-        let minute = calendarComponents2.minute
-        let second = calendarComponents3.second
-        var String_a = String(format: "%2d %2d %02d \n",hour!,minute!,second!)
-        print(String_a)
-        if hour == 13 && minute == 54 && second! <= 2{
-            
-            let suimin_time = Filewrite()
-            suimin_time.sleep_time()
-        }
-    }
     @objc func slept_time(){
         let a = NSDate()
         let formatter = DateFormatter()
