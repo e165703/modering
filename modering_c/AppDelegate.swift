@@ -11,11 +11,11 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var counter2 = 0
     var counter = 0
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         let suimin = Filewrite()
-        
+        ///aaaa
         if application.applicationState != .active{
             suimin.slept_time()
             application.applicationIconBadgeNumber = 0
@@ -37,12 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     | UInt8(UIUserNotificationType.alert.rawValue))), categories: nil)
         )
         //if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification,let userInfo = notification.userInfo{
-            //application.applicationIconBadgeNumber = 0
-            //application.cancelLocalNotification(notification)
+        //application.applicationIconBadgeNumber = 0
+        //application.cancelLocalNotification(notification)
         //}
         return true
     }
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -56,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let suimin = Filewrite()
         application.cancelAllLocalNotifications()
         
-        suimin.a()
         
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
